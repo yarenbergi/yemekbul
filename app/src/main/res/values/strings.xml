@@ -11,4 +11,9 @@
     <string name="login_failed">"Login failed"</string>
     <string name="e_mail">E-mail</string>
     <string name="sifre">Şifre</string>
+    <string name="giri">Giriş</string>
+    <string name="loginSucces">Giriş Başarılı!\n Hoşgeldin %s</string>
+    <string name="emailEmptyErrorMessage">Mail alanı boş bırakılamaz!</string>
+    <string name="emailInvalidErrorMessage">Mail geçersiz!</string>
+    <string name="passwordInvalidErrorMessage">Parola 8 karakterden küçük olamaz!</string>
 </resources>
