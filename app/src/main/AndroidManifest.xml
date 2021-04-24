@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YemekBul">
-        <activity android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search"
+            android:theme="@style/Theme.YemekBul.NoActionBar"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
