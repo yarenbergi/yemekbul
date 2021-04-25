@@ -18,5 +18,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        girisYapbutton.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
