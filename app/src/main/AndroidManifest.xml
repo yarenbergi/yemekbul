@@ -12,12 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YemekBul">
         <activity
+            android:name=".MenuItemActivity"/>
+
+        <activity
             android:name=".SearchActivity"
             android:label="@string/title_activity_search"
-            android:theme="@style/Theme.YemekBul.NoActionBar"></activity>
+            android:theme="@style/Theme.YemekBul.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">

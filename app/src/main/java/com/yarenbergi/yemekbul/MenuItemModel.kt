@@ -11,8 +11,8 @@ import com.yarenbergi.yemekbul.data.MenuItems
 
 class MenuItemModel : ViewModel() {
     fun getMenuItem(){
-        lateinit var recipeService: RecipeService
-        lateinit var menuItemList: MutableLiveData<LiveData<MenuItems>>
+        var recipeService: RecipeService
+        var menuItemList: MutableLiveData<LiveData<MenuItems>>
         recipeService = ApiClient.getClient().create(RecipeService::class.java)
         var post = recipeService.getMenuItem("1")
 
