@@ -11,7 +11,7 @@ class MenuItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_item)
 
         var menuItemModel = MenuItemModel()
-        menuItemModel.getMenuItem()
+        menuItemModel.getMenuItem("1")
         var text: TextView = findViewById(R.id.menuItemView) as TextView
         text.setText("asd")
     }

@@ -10,11 +10,11 @@ import androidx.lifecycle.MutableLiveData
 import com.yarenbergi.yemekbul.data.MenuItems
 
 class MenuItemModel : ViewModel() {
-    fun getMenuItem(){
+    fun getMenuItem(id:String){
         lateinit var recipeService: RecipeService
         lateinit var menuItemList: MenuItems
         recipeService = ApiClient.getClient().create(RecipeService::class.java)
-        var post = recipeService.getMenuItem()
+        var post = recipeService.getMenuItem(id, Constant.ApiKey)
 
         post.enqueue(object : Callback<MenuItems> {
             override fun onFailure(call: Call<MenuItems>, t: Throwable) {
