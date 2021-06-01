@@ -1,12 +1,13 @@
 package com.yarenbergi.yemekbul.data
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
-data class NutrientsItem(@SerializedName("amount")
+data class NutrientsItem(@Json(name = "amount")
                          val amount: Float,
-                         @SerializedName("unit")
+                         @Json(name = "unit")
                          val unit: String = "",
-                         @SerializedName("percentOfDailyNeeds")
+                         @Json(name = "percentOfDailyNeeds")
                          val percentOfDailyNeeds: Float,
-                         @SerializedName("name")
+                         @Json(name = "name")
                          val name: String = "")

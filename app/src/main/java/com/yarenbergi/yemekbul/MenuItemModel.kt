@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import com.yarenbergi.yemekbul.data.MenuItems
 
 class MenuItemModel : ViewModel() {
+
     fun getMenuItem(id:String){
         lateinit var recipeService: RecipeService
         lateinit var menuItemList: MenuItems

@@ -1,10 +1,9 @@
 package com.yarenbergi.yemekbul.data
 
-import com.google.gson.annotations.SerializedName
-import com.yarenbergi.yemekbul.data.CaloricBreakdown
-import com.yarenbergi.yemekbul.data.NutrientsItem
+import com.google.gson.internal.LinkedHashTreeMap
+import com.squareup.moshi.Json
 
-data class Nutrition(@SerializedName("caloricBreakdown")
+data class Nutrition(@Json(name = "caloricBreakdown")
                      val caloricBreakdown: CaloricBreakdown,
-                     @SerializedName("nutrients")
-                     val nutrients: List<NutrientsItem>?)
+                     @Json(name = "nutrients")
+                     val nutrients: LinkedHashTreeMap<String, NutrientsItem>?)
