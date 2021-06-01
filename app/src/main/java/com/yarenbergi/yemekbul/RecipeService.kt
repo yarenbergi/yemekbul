@@ -1,6 +1,7 @@
 package com.yarenbergi.yemekbul
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.yarenbergi.yemekbul.data.MenuItems
 import retrofit2.Call
 import retrofit2.http.GET
@@ -8,7 +9,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface RecipeService {
-    @Headers("apiKey: " + "3b749f7ad30c48d9844cab1d2fcb0f23")
-    @GET("/food/menuItems/")
-    fun getMenuItem(@Query("id") id : String): Call<LiveData<MenuItems>>
+    //@Headers("apiKey: " + "e1de17cefea24c36a776f31b15536d71")
+    @GET("/food/menuItems/424571?apiKey=e1de17cefea24c36a776f31b15536d71&includeNutrition=true")
+    fun getMenuItem(): Call<MenuItems>
 }

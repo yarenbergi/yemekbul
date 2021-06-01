@@ -3,8 +3,8 @@ package com.yarenbergi.yemekbul.data
 import com.google.gson.annotations.SerializedName
 
 data class CaloricBreakdown(@SerializedName("percentCarbs")
-                            val percentCarbs: Int = 0,
+                            val percentCarbs: Float,
                             @SerializedName("percentProtein")
-                            val percentProtein: Int = 0,
+                            val percentProtein: Float,
                             @SerializedName("percentFat")
-                            val percentFat: Int = 0)
+                            val percentFat: Float)

@@ -11,23 +11,25 @@ import com.yarenbergi.yemekbul.data.MenuItems
 
 class MenuItemModel : ViewModel() {
     fun getMenuItem(){
-        var recipeService: RecipeService
-        var menuItemList: MutableLiveData<LiveData<MenuItems>>
+        lateinit var recipeService: RecipeService
+        lateinit var menuItemList: MenuItems
         recipeService = ApiClient.getClient().create(RecipeService::class.java)
-        var post = recipeService.getMenuItem("1")
+        var post = recipeService.getMenuItem()
 
-        post.enqueue(object : Callback<LiveData<MenuItems>> {
-            override fun onFailure(call: Call<LiveData<MenuItems>>, t: Throwable) {
-                Log.d("DENEME : ", "ERROR")
+        post.enqueue(object : Callback<MenuItems> {
+            override fun onFailure(call: Call<MenuItems>, t: Throwable) {
+
+                Log.d("-----------------: ", t.message.toString())
                // Toast.makeText(, t.message.toString(), Toast.LENGTH_LONG).show()
             }
 
-            override fun onResponse(call: Call<LiveData<MenuItems>>, response: Response<LiveData<MenuItems>>) {
-
+            override fun onResponse(call: Call<MenuItems>, response: Response<MenuItems>) {
                 if (response.isSuccessful) {
-                    menuItemList = (response.body() as MutableLiveData<LiveData<MenuItems>>?)!!
-                    Log.d("DENEMEEEEEEEEE : -----", response.body().toString())
-                    menuItemList.postValue(response.body())
+                    menuItemList = (response.body())!!
+
+                    Log.d("DENEMEEEEEEEEE : -----", menuItemList.toString())
+                } else {
+                    Log.d("ssssssssssssssssssss", response.message())
                 }
             }
 
