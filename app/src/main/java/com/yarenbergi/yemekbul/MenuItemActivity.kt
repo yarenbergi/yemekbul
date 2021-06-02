@@ -1,16 +1,20 @@
 package com.yarenbergi.yemekbul
 
 import android.os.Bundle
-import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import com.squareup.picasso.Picasso
 import com.yarenbergi.yemekbul.api.com.spoonacular.DefaultApi
 import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ClientException
 import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ServerException
+import com.yarenbergi.yemekbul.data.AnalyzedRecipe
 import com.yarenbergi.yemekbul.data.MenuItems
+import java.lang.reflect.Type
 
 
 class MenuItemActivity : AppCompatActivity() {
@@ -24,7 +28,7 @@ class MenuItemActivity : AppCompatActivity() {
         var text: TextView = findViewById(R.id.menuItemView) as TextView
         text.setText("asd")
 */
-
+        /*
         val apiInstance = DefaultApi()
         val id : java.math.BigDecimal = 1.toBigDecimal() // java.math.BigDecimal | The menu item id.
         try {
@@ -45,6 +49,38 @@ class MenuItemActivity : AppCompatActivity() {
             println("5xx response calling DefaultApi#getMenuItemInformation")
             e.printStackTrace()
         }
+
+         */
+/*
+        //getAnalyzedRecipeInstructions
+        val apiInstance = DefaultApi()
+        val id : java.math.BigDecimal = 324694.toBigDecimal() // java.math.BigDecimal | The recipe id.
+        val stepBreakdown : kotlin.Boolean = true // kotlin.Boolean | Whether to break down the recipe steps even more.
+        try {
+            val result : kotlin.Any = apiInstance.getAnalyzedRecipeInstructions(id, stepBreakdown)
+            val gson = GsonBuilder().create()
+            val mapper = ObjectMapper()
+            mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+            val listType: Type = object : TypeToken<List<AnalyzedRecipe?>?>() {}.type
+            val recipe : List<AnalyzedRecipe> = gson.fromJson(gson.toJson(result), listType)
+            var text: TextView = findViewById(R.id.menuItemView) as TextView
+            text.setText(recipe[1].name)
+            println(recipe[1].name)
+            println(result)
+        } catch (e: ClientException) {
+            println("4xx response calling DefaultApi#getAnalyzedRecipeInstructions")
+            e.printStackTrace()
+        } catch (e: ServerException) {
+            println("5xx response calling DefaultApi#getAnalyzedRecipeInstructions")
+            e.printStackTrace()
+        }
+ */
+
+        /*
+                    val imageView: ImageView = findViewById(R.id.imageView)
+            Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg").resize(500,500).into(imageView)
+
+         */
     }
 
 
