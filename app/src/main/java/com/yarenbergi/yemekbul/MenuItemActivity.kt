@@ -75,12 +75,10 @@ class MenuItemActivity : AppCompatActivity() {
             e.printStackTrace()
         }
  */
+        val imageView: ImageView = findViewById(R.id.imageView)
+        ImageAdapter.setImage("https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg",imageView)
 
-        /*
-                    val imageView: ImageView = findViewById(R.id.imageView)
-            Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg").resize(500,500).into(imageView)
 
-         */
     }
 
 
