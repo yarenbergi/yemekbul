@@ -56,5 +56,8 @@
     <string name="mediterranean">Mediterranean</string>
     <string name="german">German</string>
     <string name="african">African</string>
+    <string name="recipes_fragment">Recipes</string>
+    <string name="favorite_recipes_fragment">Favorite Recipes</string>
+    <string name="shopping_list_fragment">Shopping List</string>
 
 </resources>
