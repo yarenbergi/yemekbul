@@ -59,5 +59,7 @@
     <string name="recipes_fragment">Recipes</string>
     <string name="favorite_recipes_fragment">Favorite Recipes</string>
     <string name="shopping_list_fragment">Shopping List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

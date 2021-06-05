@@ -1,20 +1,10 @@
-package com.yarenbergi.yemekbul
+package com.yarenbergi.yemekbul.activity
 
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
-import com.squareup.picasso.Picasso
-import com.yarenbergi.yemekbul.api.com.spoonacular.DefaultApi
-import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ClientException
-import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ServerException
-import com.yarenbergi.yemekbul.data.AnalyzedRecipe
-import com.yarenbergi.yemekbul.data.MenuItems
-import java.lang.reflect.Type
+import com.yarenbergi.yemekbul.ImageAdapter
+import com.yarenbergi.yemekbul.R
 
 
 class MenuItemActivity : AppCompatActivity() {
@@ -76,7 +66,10 @@ class MenuItemActivity : AppCompatActivity() {
         }
  */
         val imageView: ImageView = findViewById(R.id.imageView)
-        ImageAdapter.setImage("https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg",imageView)
+        ImageAdapter.setImage(
+            "https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg",
+            imageView
+        )
 
 
     }

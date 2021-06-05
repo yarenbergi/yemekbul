@@ -1,9 +1,10 @@
-package com.yarenbergi.yemekbul
+package com.yarenbergi.yemekbul.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import com.yarenbergi.yemekbul.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {

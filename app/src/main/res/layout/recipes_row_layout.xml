@@ -37,7 +37,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/title_textView"
+                android:id="@+id/recipeTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -63,9 +63,9 @@
                 android:maxLines="3"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 android:textColor="@color/darkGray"
-                app:layout_constraintEnd_toEndOf="@+id/title_textView"
-                app:layout_constraintStart_toStartOf="@+id/title_textView"
-                app:layout_constraintTop_toBottomOf="@+id/title_textView" />
+                app:layout_constraintEnd_toEndOf="@+id/recipeTitle"
+                app:layout_constraintStart_toStartOf="@+id/recipeTitle"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
 
             <ImageView
                 android:id="@+id/imageView3"

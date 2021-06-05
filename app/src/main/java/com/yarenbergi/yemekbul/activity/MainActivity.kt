@@ -1,6 +1,5 @@
-package com.yarenbergi.yemekbul
+package com.yarenbergi.yemekbul.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.yarenbergi.yemekbul.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -23,9 +23,10 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.navHostFragment)
         val appBarConfiguration: AppBarConfiguration = AppBarConfiguration(
             setOf(
-            R.id.recipesFragment,
-            R.id.favoriteRecipesFragment,
-            R.id.shoppingListFragment
+                R.id.recipesFragment,
+                R.id.favoriteRecipesFragment,
+                R.id.shoppingListFragment,
+                R.id.recipeFragment2
          )
         )
 

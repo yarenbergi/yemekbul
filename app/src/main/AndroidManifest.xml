@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yarenbergi.yemekbul"
-    xmlns:dist="http://schemas.android.com/apk/distribution">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.yarenbergi.yemekbul">
 
     <dist:module dist:instant="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,18 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YemekBul">
+        <activity android:name=".activity.RecipeActivity"></activity>
+        <activity android:name=".activity.MenuItemActivity" />
         <activity
-            android:name=".MenuItemActivity"/>
-
-        <activity
-            android:name=".SearchActivity"
+            android:name=".activity.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/Theme.YemekBul.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

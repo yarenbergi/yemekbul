@@ -7,17 +7,22 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.yarenbergi.yemekbul.RecipesFragment"
+        android:name="com.yarenbergi.yemekbul.fragment.RecipesFragment"
         android:label="fragment_recipes"
         tools:layout="@layout/fragment_recipes" />
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.yarenbergi.yemekbul.FavoriteRecipesFragment"
+        android:name="com.yarenbergi.yemekbul.fragment.FavoriteRecipesFragment"
         android:label="fragment_favorite_recipes"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/shoppingListFragment"
-        android:name="com.yarenbergi.yemekbul.ShoppingListFragment"
+        android:name="com.yarenbergi.yemekbul.fragment.ShoppingListFragment"
         android:label="fragment_shopping_list"
         tools:layout="@layout/fragment_shopping_list" />
+    <fragment
+        android:id="@+id/recipeFragment2"
+        android:name="com.yarenbergi.yemekbul.fragment.recipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/recipes_row_layout" />
 </navigation>
