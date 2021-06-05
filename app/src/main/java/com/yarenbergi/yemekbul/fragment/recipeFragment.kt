@@ -17,11 +17,12 @@ class recipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val analyzedRecipe = Service.getAnalyzedRecipeInstructions(324694.toBigDecimal(), true)
-        val view = inflater.inflate(R.layout.recipes_row_layout, container, false)
+
+        val view = inflater.inflate(R.layout.deneme, container, false)
+    /*    val analyzedRecipe = Service.getAnalyzedRecipeInstructions(324694.toBigDecimal(), true)
         view.recipeTitle.setText(analyzedRecipe[1].name)
         Service.setImage("https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg", view.recipeImageView)
-        view.description_textView.setText(analyzedRecipe[1].steps?.get(0)?.equipment?.get(0)?.name)
+        view.description_textView.setText(analyzedRecipe[1].steps?.get(0)?.equipment?.get(0)?.name)*/
         return view
     }
 

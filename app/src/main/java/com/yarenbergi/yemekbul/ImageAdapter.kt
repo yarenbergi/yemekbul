@@ -8,4 +8,5 @@ object ImageAdapter {
     fun setImage(url:String, imageView:ImageView){
         Picasso.get().load(url).into(imageView)
     }
+
 }
