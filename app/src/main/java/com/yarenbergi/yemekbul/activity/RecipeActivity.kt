@@ -7,14 +7,17 @@ import com.yarenbergi.yemekbul.Service
 import kotlinx.android.synthetic.main.deneme.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yarenbergi.yemekbul.RecyclerviewAdapter
+import com.yarenbergi.yemekbul.data.RecipeInfo
 
 class RecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recipes_row_layout)
+  //      setContentView(R.layout.deneme)
 
-        val analyzedRecipe = Service.getAnalyzedRecipeInstructions(324694.toBigDecimal(), true)
+   /*     val analyzedRecipe = Service.getAnalyzedRecipeInstructions(324694.toBigDecimal(), true)
         recyclerview.layoutManager=LinearLayoutManager(this)
         recyclerview.adapter= RecyclerviewAdapter(analyzedRecipe)
+
+    */
     }
 }
