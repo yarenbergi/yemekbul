@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.Service
+import com.yarenbergi.yemekbul.data.RecipesItem
 
 class FavoriteRecipesFragment : Fragment() {
 
@@ -15,7 +19,8 @@ class FavoriteRecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        Service.getRandomRecipes(true, "",3.toBigDecimal())
-        return inflater.inflate(R.layout.fragment_favorite_recipes, container, false)
+        val view = inflater.inflate(R.layout.deneme, container, false)
+
+        return view
     }
 }

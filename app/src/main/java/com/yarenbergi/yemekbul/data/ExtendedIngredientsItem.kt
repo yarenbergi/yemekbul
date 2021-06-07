@@ -7,7 +7,7 @@ data class ExtendedIngredientsItem(@SerializedName("originalName")
                                    @SerializedName("image")
                                    val image: String = "",
                                    @SerializedName("amount")
-                                   val amount: Int = 0,
+                                   val amount: Double = 0.0,
                                    @SerializedName("measures")
                                    val measures: Measures,
                                    @SerializedName("unit")

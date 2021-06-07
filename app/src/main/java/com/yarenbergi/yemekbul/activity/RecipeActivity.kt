@@ -6,7 +6,6 @@ import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.Service
 import kotlinx.android.synthetic.main.deneme.*
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yarenbergi.yemekbul.RecyclerviewAdapter
 import com.yarenbergi.yemekbul.data.RecipeInfo
 
 class RecipeActivity : AppCompatActivity() {

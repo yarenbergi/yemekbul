@@ -8,9 +8,7 @@ import com.google.gson.reflect.TypeToken
 import com.yarenbergi.yemekbul.api.com.spoonacular.DefaultApi
 import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ClientException
 import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ServerException
-import com.yarenbergi.yemekbul.data.AnalyzedRecipe
-import com.yarenbergi.yemekbul.data.MenuItems
-import com.yarenbergi.yemekbul.data.RecipeInfo
+import com.yarenbergi.yemekbul.data.*
 import kotlinx.android.synthetic.main.recipes_row_layout.view.*
 import java.lang.reflect.Type
 
@@ -53,16 +51,16 @@ object Service {
         return null!!
     }
 
-    fun getRandomRecipes(limitLicense: kotlin.Boolean?, tags: kotlin.String?, number: java.math.BigDecimal?){
+    fun getRandomRecipes(limitLicense: kotlin.Boolean?, tags: kotlin.String?, number: java.math.BigDecimal?): List<RecipesItem>? {
         val apiInstance = DefaultApi()
         try {
             val result : kotlin.Any = apiInstance.getRandomRecipes(limitLicense, tags, number)
             val gson = GsonBuilder().create()
             val mapper = ObjectMapper()
             mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-            val listType: Type = object : TypeToken<RecipeInfo?>() {}.type
-            val recipe : RecipeInfo = gson.fromJson(gson.toJson(result), listType)
-            println(result)
+            val listType: Type = object : TypeToken<Recipes?>() {}.type
+            val recipe : Recipes = gson.fromJson(gson.toJson(result), listType)
+            return recipe.recipes
         } catch (e: ClientException) {
             println("4xx response calling DefaultApi#getRandomRecipes")
             e.printStackTrace()
@@ -70,6 +68,7 @@ object Service {
             println("5xx response calling DefaultApi#getRandomRecipes")
             e.printStackTrace()
         }
+        return null!!
     }
 
     fun getAnalyzedRecipeInstructions(id: java.math.BigDecimal, stepBreakdown: kotlin.Boolean? ): List<AnalyzedRecipe> {
