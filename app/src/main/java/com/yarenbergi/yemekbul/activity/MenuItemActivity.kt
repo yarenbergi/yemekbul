@@ -2,9 +2,11 @@ package com.yarenbergi.yemekbul.activity
 
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.yarenbergi.yemekbul.ImageAdapter
 import com.yarenbergi.yemekbul.R
+import com.yarenbergi.yemekbul.Service
 
 
 class MenuItemActivity : AppCompatActivity() {
@@ -12,6 +14,12 @@ class MenuItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_item)
+
+        val id = intent.getStringExtra("id")
+        var text: TextView = findViewById<TextView>(R.id.menuItemView)
+        if (id != null) {
+            text.text = Service.getRecipeInformation(id.toBigDecimal(),false).title
+        }
 /*
         var menuItemModel = MenuItemModel()
         menuItemModel.getMenuItem("1")
