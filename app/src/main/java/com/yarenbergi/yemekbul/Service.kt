@@ -138,5 +138,27 @@ object Service {
         return null!!
     }
 
+    //Service.summarizeRecipe(4632.toBigDecimal())
+    fun summarizeRecipe(id: java.math.BigDecimal) : SummarizeInfoForRecipe {//TODO:Anasayfaya bu bilgi eklenebilir mi?
+        val apiInstance = DefaultApi()
+        try {
+            val result : kotlin.Any = apiInstance.summarizeRecipe(id)
+            println(result)
+            val gson = GsonBuilder().create()
+            val mapper = ObjectMapper()
+            mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+            val listType: Type = object : TypeToken<SummarizeInfoForRecipe?>() {}.type
+            val recipeInformation : SummarizeInfoForRecipe = gson.fromJson(gson.toJson(result), listType)
+            return recipeInformation
+        } catch (e: ClientException) {
+            println("4xx response calling DefaultApi#summarizeRecipe")
+            e.printStackTrace()
+        } catch (e: ServerException) {
+            println("5xx response calling DefaultApi#summarizeRecipe")
+            e.printStackTrace()
+        }
+        return null!!
+    }
+
 
     }
