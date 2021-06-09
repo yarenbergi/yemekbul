@@ -116,4 +116,27 @@ object Service {
         return null!!
     }
 
-}
+    // Service.generateMealPlan("day",100.toBigDecimal(),"vegetarian","shellfish, olives")
+    fun generateMealPlan(timeFrame: kotlin.String?, targetCalories: java.math.BigDecimal?, diet: kotlin.String?, exclude: kotlin.String?) : MealPlan {
+        val apiInstance = DefaultApi()
+        try {
+            val result : kotlin.Any = apiInstance.generateMealPlan(timeFrame, targetCalories, diet, exclude)
+            val gson = GsonBuilder().create()
+            val mapper = ObjectMapper()
+            mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+            val listType: Type = object : TypeToken<MealPlan?>() {}.type
+            val mealPlan : MealPlan = gson.fromJson(gson.toJson(result), listType)
+            println(result)
+            return mealPlan
+        } catch (e: ClientException) {
+            println("4xx response calling DefaultApi#generateMealPlan")
+            e.printStackTrace()
+        } catch (e: ServerException) {
+            println("5xx response calling DefaultApi#generateMealPlan")
+            e.printStackTrace()
+        }
+        return null!!
+    }
+
+
+    }
