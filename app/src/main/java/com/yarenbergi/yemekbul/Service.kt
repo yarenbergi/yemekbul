@@ -91,9 +91,29 @@ object Service {
         }
         return null!!
     }
+//  Service.ingredientSearch("apple",true,1.toBigDecimal(),90.toBigDecimal(),
+//            1.toBigDecimal(),90.toBigDecimal(),1.toBigDecimal(),90.toBigDecimal(),false,
+//        "","calories","asc",0.toBigDecimal(),10.toBigDecimal())
 
-    fun setImage(url: String, view: ImageView){
-        ImageAdapter.setImage(url,view)
+    fun ingredientSearch(query: kotlin.String, addChildren: kotlin.Boolean?, minProteinPercent: java.math.BigDecimal?, maxProteinPercent: java.math.BigDecimal?, minFatPercent: java.math.BigDecimal?, maxFatPercent: java.math.BigDecimal?, minCarbsPercent: java.math.BigDecimal?, maxCarbsPercent: java.math.BigDecimal?, metaInformation: kotlin.Boolean?, intolerances: kotlin.String?, sort: kotlin.String?, sortDirection: kotlin.String?, offset: java.math.BigDecimal?, number: java.math.BigDecimal?) : List<ResultsItem>? {
+        val apiInstance = DefaultApi()
+        try {
+            val result : kotlin.Any = apiInstance.ingredientSearch(query, addChildren, minProteinPercent, maxProteinPercent, minFatPercent, maxFatPercent, minCarbsPercent, maxCarbsPercent, metaInformation, intolerances, sort, sortDirection, offset, number)
+            val gson = GsonBuilder().create()
+            val mapper = ObjectMapper()
+            mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+            val listType: Type = object : TypeToken<IngredientSearchResult?>() {}.type
+            val recipes : IngredientSearchResult = gson.fromJson(gson.toJson(result), listType)
+            return recipes.results
+
+        } catch (e: ClientException) {
+            println("4xx response calling DefaultApi#ingredientSearch")
+            e.printStackTrace()
+        } catch (e: ServerException) {
+            println("5xx response calling DefaultApi#ingredientSearch")
+            e.printStackTrace()
+        }
+        return null!!
     }
 
 }
