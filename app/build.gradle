@@ -128,4 +128,7 @@ dependencies {
 
     // Jsoup
     implementation 'org.jsoup:jsoup:1.13.1'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.elmargomez.typer:typerlib:1.0.0'
 }

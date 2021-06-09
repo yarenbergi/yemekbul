@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.yarenbergi.yemekbul.ImageAdapter
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.Service
+import com.yarenbergi.yemekbul.data.RecipeInfo
 
 
 class MenuItemActivity : AppCompatActivity() {
@@ -16,9 +17,17 @@ class MenuItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_item)
 
         val id = intent.getStringExtra("id")
-        var text: TextView = findViewById<TextView>(R.id.menuItemView)
+
+        var text: TextView = findViewById(R.id.recipeTitleTextView)
+        var image: ImageView = findViewById(R.id.recipeImage)
+        var ingredients: TextView = findViewById(R.id.ingredientsList)
+        var desc: TextView = findViewById(R.id.recipeDescription)
         if (id != null) {
-            text.text = Service.getRecipeInformation(id.toBigDecimal(),false).title
+            var recipeInfo : RecipeInfo = Service.getRecipeInformation(id.toBigDecimal(),false)
+            text.text = recipeInfo.title
+            ImageAdapter.setImage(recipeInfo.image, image)
+            ingredients.text = recipeInfo.extendedIngredients.toString()
+            desc.text = recipeInfo.instructions
         }
 /*
         var menuItemModel = MenuItemModel()
@@ -73,12 +82,6 @@ class MenuItemActivity : AppCompatActivity() {
             e.printStackTrace()
         }
  */
-        val imageView: ImageView = findViewById(R.id.imageView)
-        ImageAdapter.setImage(
-            "https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg",
-            imageView
-        )
-
 
     }
 

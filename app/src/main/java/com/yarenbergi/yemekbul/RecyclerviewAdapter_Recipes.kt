@@ -26,7 +26,9 @@ class RecyclerviewAdapter_Recipes(var recipeList:List<RecipesItem>): RecyclerVie
     }
     override fun onBindViewHolder(holder: RecyclerviewAdapter_Recipes.ViewHolder, position: Int) {
         holder.title.text=recipeList[position].title
-        ImageAdapter.setImage(recipeList[position].image,holder.photo)
+        if(recipeList[position].image != null){
+            ImageAdapter.setImage(recipeList[position].image,holder.photo)
+        }
         holder.desc.text= recipeList[position].instructions
         holder.likes.text = recipeList[position].aggregateLikes.toString()
         holder.time.text = recipeList[position].readyInMinutes.toString()
