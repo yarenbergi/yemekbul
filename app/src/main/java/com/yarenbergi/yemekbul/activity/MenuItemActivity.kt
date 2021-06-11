@@ -17,7 +17,7 @@ class MenuItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_item)
 
         val id = intent.getStringExtra("id")
-
+        val list: ArrayList<String> = ArrayList<String>()
         var text: TextView = findViewById(R.id.recipeTitleTextView)
         var image: ImageView = findViewById(R.id.recipeImage)
         var ingredients: TextView = findViewById(R.id.ingredientsList)
@@ -26,7 +26,10 @@ class MenuItemActivity : AppCompatActivity() {
             var recipeInfo : RecipeInfo = Service.getRecipeInformation(id.toBigDecimal(),false)
             text.text = recipeInfo.title
             ImageAdapter.setImage(recipeInfo.image, image)
-            ingredients.text = recipeInfo.extendedIngredients.toString()
+            for(item in recipeInfo.extendedIngredients!!){
+                list.add(item.originalName.toString())
+            }
+            ingredients.text = list.toString()
             desc.text = recipeInfo.instructions
         }
 /*
