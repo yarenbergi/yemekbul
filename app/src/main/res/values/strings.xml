@@ -34,15 +34,8 @@
     <string name="soy">Soy</string>
     <string name="dairy">Dairy</string>
     <string name="diets">Diets</string>
-    <string name="gluten_free">Gluten Free</string>
-    <string name="ketogenic">Ketogenic</string>
-    <string name="vegetarian">Vegetarian</string>
     <string name="lacto_vegetarian">Lacto-Vegetarian</string>
     <string name="ovo_vegetarian">Ovo-Vegetarian</string>
-    <string name="vegan">Vegan</string>
-    <string name="pescetarian">Pescetarian</string>
-    <string name="paleo">Paleo</string>
-    <string name="primal">Primal</string>
     <string name="whole30">Whole30</string>
     <string name="use_the_ingredients_in_the_fridge">Use the ingredients in the fridge.</string>
     <string name="cuisines">Cuisines</string>
@@ -62,7 +55,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="meal_type">Meal Type</string>
-    <string name="diet_type">Diet Type</string>
     <string name="main_course">Main Course</string>
     <string name="side_dish">Side Dish</string>
     <string name="dessert">Dessert</string>
@@ -78,5 +70,14 @@
     <string name="snack">Snack</string>
     <string name="drink">Drink</string>
     <string name="search">Search</string>
+    <string name="gluten_free">Gluten Free</string>
+    <string name="ketogenic">Ketogenic</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="pescetarian">Pescetarian</string>
+    <string name="paleo">Paleo</string>
+    <string name="primal">Primal</string>
+    <string name="diet_type">Diet Type</string>
+    <string name="apply">Apply</string>
 
 </resources>

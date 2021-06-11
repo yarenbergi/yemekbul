@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.todkars.shimmer.ShimmerRecyclerView
@@ -31,6 +32,10 @@ class RecipesFragment : Fragment() {
         recyclerView.layoutManager= LinearLayoutManager(context)
         recyclerView.adapter= recipes?.let { RecyclerviewAdapter_Recipes(it) }
     //    view.recycler_view.showShimmer() //TODO: bu olunca yazdırmıyor!
+
+        view.recipes_fab.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+        }
 
         return view
     }
