@@ -1,4 +1,4 @@
-package com.yarenbergi.yemekbul
+package com.yarenbergi.yemekbul.adapter
 
 import android.widget.ImageView
 import com.squareup.picasso.Picasso

@@ -1,21 +1,49 @@
 package com.yarenbergi.yemekbul.activity
 
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.yarenbergi.yemekbul.ImageAdapter
+import androidx.fragment.app.Fragment
+import androidx.navigation.navArgs
 import com.yarenbergi.yemekbul.R
-import com.yarenbergi.yemekbul.Service
-import com.yarenbergi.yemekbul.data.RecipeInfo
+import com.yarenbergi.yemekbul.adapter.PagerAdapter
+import com.yarenbergi.yemekbul.fragment.ingredients.IngredientsFragment
+import com.yarenbergi.yemekbul.fragment.instructions.InstructionsFragment
+import com.yarenbergi.yemekbul.fragment.overview.OverviewFragment
+import kotlinx.android.synthetic.main.activity_menu_item.*
 
 
 class MenuItemActivity : AppCompatActivity() {
+
+    //private val args by navArgs<MenuItemActivity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_item)
 
+        val fragments = ArrayList<Fragment>()
+        fragments.add(OverviewFragment())
+        fragments.add(IngredientsFragment())
+        fragments.add(InstructionsFragment())
+
+        val titles = ArrayList<String>()
+        titles.add("Overview")
+        titles.add("Ingredients")
+        titles.add("Instructions")
+
+        val resultBundle = Bundle()
+        //resultBundle.putParcelable("recipeBundle", args.result)
+
+        val adapter = PagerAdapter(
+            resultBundle,
+            fragments,
+            titles,
+            supportFragmentManager
+        )
+
+        viewPager.adapter = adapter
+        tabLayout.setupWithViewPager(viewPager)
+
+/*
         val id = intent.getStringExtra("id")
         val list: ArrayList<String> = ArrayList<String>()
         var text: TextView = findViewById(R.id.recipeTitleTextView)
@@ -32,6 +60,8 @@ class MenuItemActivity : AppCompatActivity() {
             ingredients.text = list.toString()
             desc.text = recipeInfo.instructions
         }
+
+*/
 /*
         var menuItemModel = MenuItemModel()
         menuItemModel.getMenuItem("1")

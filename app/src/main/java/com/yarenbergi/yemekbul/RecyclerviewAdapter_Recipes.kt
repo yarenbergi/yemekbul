@@ -11,10 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
-import com.yarenbergi.yemekbul.data.AnalyzedRecipe
-import com.yarenbergi.yemekbul.data.Recipe
+import com.yarenbergi.yemekbul.adapter.ImageAdapter
 import com.yarenbergi.yemekbul.data.RecipesItem
-import com.yarenbergi.yemekbul.fragment.RecipesFragment
 
 class RecyclerviewAdapter_Recipes(var recipeList:List<RecipesItem>): RecyclerView.Adapter<RecyclerviewAdapter_Recipes.ViewHolder>() {
     override fun onCreateViewHolder(
