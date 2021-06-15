@@ -160,5 +160,18 @@ object Service {
         return null!!
     }
 
-
+    fun searchAllFood(query: kotlin.String, offset: java.math.BigDecimal?, number: java.math.BigDecimal?) : kotlin.Any {
+        val apiInstance = DefaultApi()
+        try {
+            val result : kotlin.Any = apiInstance.searchAllFood(query, offset, number)
+            println(result)
+        } catch (e: ClientException) {
+            println("4xx response calling DefaultApi#searchAllFood")
+            e.printStackTrace()
+        } catch (e: ServerException) {
+            println("5xx response calling DefaultApi#searchAllFood")
+            e.printStackTrace()
+        }
+        return null!!
     }
+}
