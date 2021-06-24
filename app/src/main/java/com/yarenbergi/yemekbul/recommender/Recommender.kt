@@ -21,14 +21,14 @@ import kotlin.collections.HashMap
 class Recommender {
     @RequiresApi(Build.VERSION_CODES.R)
     fun like(ingredientList: ArrayList<Int>) {
-        givePoints(ingredientList, 0)
+        givePoints(ingredientList, 2)
     }
 
     fun dislike(ingredientList: ArrayList<Int>) {
         givePoints(ingredientList, -1)
     }
 
-    fun orderTheList(recipeList: List<RecipesItem>){
+    fun orderTheList(recipeList: List<RecipesItem>) : List<RecipePointDTO>{
         val csvParser = CSVParser(FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv" ).bufferedReader(), CSVFormat.DEFAULT);
         var recommendedList : ArrayList<RecipePointDTO> = ArrayList()
         val list:MutableMap<Int, Int> = HashMap()
