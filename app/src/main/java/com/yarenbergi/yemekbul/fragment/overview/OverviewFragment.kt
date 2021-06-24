@@ -36,15 +36,11 @@ class OverviewFragment : Fragment() {
         //functionality of like and dislike
         val likeButton: Button = view.findViewById(R.id.like_button)
         val dislikeButton: Button = view.findViewById(R.id.dislike_button)
-        var ingredientIds : IntArray = IntArray(1)
+        var ingredientIds : ArrayList<Int> = ArrayList()
         println(recipeInfo)
         if (ingredientList != null) {
-            var currentIndex = 0
-            ingredientIds=IntArray(ingredientList.size)
             for (ingredients in ingredientList){
-                ingredientIds.set( currentIndex, ingredients.id)
-                currentIndex++
-                println(currentIndex)
+                ingredientIds.add(ingredients.id)
             }
         }
         /*
@@ -52,8 +48,8 @@ class OverviewFragment : Fragment() {
         ingredientIds[1] = 10014534
          */
 
-        likeButton.setOnClickListener(View.OnClickListener { context?.resources?.let { Recommender().like(it.openRawResource(R.raw.ingredients),ingredientIds) } })
-        dislikeButton.setOnClickListener(View.OnClickListener { context?.resources?.let { Recommender().dislike(it.openRawResource(R.raw.ingredients),ingredientIds) } })
+        likeButton.setOnClickListener(View.OnClickListener { context?.resources?.let { Recommender().like(ingredientIds) } })
+        dislikeButton.setOnClickListener(View.OnClickListener { context?.resources?.let { Recommender().dislike(ingredientIds) } })
 //recipeInfo.extendedIngredients.get(0).id
 
         if (recipeInfo != null) {

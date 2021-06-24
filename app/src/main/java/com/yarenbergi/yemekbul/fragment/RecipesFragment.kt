@@ -1,11 +1,13 @@
 package com.yarenbergi.yemekbul.fragment
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_recipes.view.*
 
 class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +36,17 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
         //recipes[0].extendedIngredients[0].id
 
+        //testing the recommender: ingredient likes
+/*
+        val ingredientIds : ArrayList<Int> = ArrayList()
+
+        for (ingredient in recipes!![0].extendedIngredients!!){
+            ingredientIds.add(ingredient.id)
+        }
+        Recommender().like(ingredientIds)
+ */
+        if(recipes != null)
+            Recommender().orderTheList(recipes)
 
 
         recyclerView.layoutManager= LinearLayoutManager(context)
