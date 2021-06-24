@@ -29,6 +29,7 @@ class Recommender {
     }
 
     fun orderTheList(recipeList: List<RecipesItem>) : List<RecipePointDTO>{
+
         val csvParser = CSVParser(FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv" ).bufferedReader(), CSVFormat.DEFAULT);
         var recommendedList : ArrayList<RecipePointDTO> = ArrayList()
         val list:MutableMap<Int, Int> = HashMap()

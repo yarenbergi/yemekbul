@@ -3,6 +3,7 @@ package com.yarenbergi.yemekbul.fragment
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import com.yarenbergi.yemekbul.Service
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
 import com.yarenbergi.yemekbul.recommender.Recommender
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
+import java.io.*
 
 class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -34,6 +36,17 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         val view = inflater.inflate(R.layout.fragment_recipes, container, false)
         val recyclerView : ShimmerRecyclerView = view.findViewById(R.id.recycler_view)
         val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
+
+
+        var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
+        var fileExists = file.exists()
+        if(!fileExists){
+
+            context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
+        }
+
+
+
         //recipes[0].extendedIngredients[0].id
 
         //testing the recommender: ingredient likes
