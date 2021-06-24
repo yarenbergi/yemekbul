@@ -31,7 +31,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         val view = inflater.inflate(R.layout.fragment_recipes, container, false)
         val recyclerView : ShimmerRecyclerView = view.findViewById(R.id.recycler_view)
         val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
-        recipes[0].extendedIngredients[0].id
+        //recipes[0].extendedIngredients[0].id
 
 
 
