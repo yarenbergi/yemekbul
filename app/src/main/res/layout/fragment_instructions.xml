@@ -1,15 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recipesRowLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.instructions.InstructionsFragment">
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_editor_absoluteX="8sp"
+            app:layout_editor_absoluteY="8sp">
+                <LinearLayout
+                    android:id="@+id/relativeLayout"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+        <ImageView
+            android:id="@+id/recipeImageMain"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/instructions_textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+                <TextView
+                    android:id="@+id/recipeTitleMain"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="32dp"
+                    android:padding="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/recipeImageMain"
+                    tools:ignore="NotSibling" />
 
-</FrameLayout>
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/recipeDescMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipeTitleMain"/>
+
+                <TextView
+                    android:id="@+id/recipeIngrMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipeDescMain" />
+                        </LinearLayout>
+        </ScrollView>
+        <Button
+            android:id="@+id/like_button"
+            android:layout_width="32dp"
+            android:layout_height="38dp"
+            android:background="@drawable/ic_thumb_up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dislike_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            tools:ignore="NotSibling" />
+
+        <Button
+            android:id="@+id/dislike_button"
+            android:layout_width="38dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_thumb_down_alt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/next_button"
+            app:layout_constraintStart_toEndOf="@+id/like_button"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintVertical_bias="0.483"
+            tools:ignore="NotSibling" />
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="35dp"
+            android:layout_height="38dp"
+            android:background="@drawable/ic_navigate_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dislike_button"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            tools:ignore="NotSibling" />
+    </androidx.constraintlayout.widget.ConstraintLayout>

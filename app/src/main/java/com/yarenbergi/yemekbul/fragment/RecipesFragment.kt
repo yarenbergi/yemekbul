@@ -72,7 +72,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         view.recipes_fab.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
         }
-
         return view
     }
 

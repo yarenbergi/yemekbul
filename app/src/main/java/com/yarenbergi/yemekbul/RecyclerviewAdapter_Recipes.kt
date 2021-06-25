@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
 import com.yarenbergi.yemekbul.adapter.ImageAdapter
 import com.yarenbergi.yemekbul.data.RecipesItem
-import com.yarenbergi.yemekbul.fragment.overview.OverviewFragment
 
 class RecyclerviewAdapter_Recipes(var recipeList:List<RecipesItem>): RecyclerView.Adapter<RecyclerviewAdapter_Recipes.ViewHolder>() {
     override fun onCreateViewHolder(
@@ -55,5 +55,6 @@ class RecyclerviewAdapter_Recipes(var recipeList:List<RecipesItem>): RecyclerVie
         val time=view.findViewById<TextView>(R.id.textView5)
         val veganImage=view.findViewById<ImageView>(R.id.imageView5)
         val veganText=view.findViewById<TextView>(R.id.textView6)
+        val point = view.findViewById<TextView>(R.id.textView7)
     }
 }

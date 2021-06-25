@@ -18,7 +18,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 
-class Recommender {
+class Recommender { //TODO: toplam puanı tutan bir metod olursa REcyclerviewAdapter_Recipes'de direk metodla çekebiliriz
     @RequiresApi(Build.VERSION_CODES.R)
     fun like(ingredientList: ArrayList<Int>) {
         givePoints(ingredientList, 2)
