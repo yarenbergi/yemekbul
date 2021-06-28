@@ -23,7 +23,6 @@ import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 import com.yarenbergi.yemekbul.recommender.Recommender
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 import java.io.*
-import java.lang.Exception
 
 class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -40,16 +39,11 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
 
         //checking the user data
-        try {
-            var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
-            var fileExists = file.exists()
-            if(!fileExists){
-                context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
-            }
-        }catch (e: Exception){
+        var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
+        var fileExists = file.exists()
+        if(!fileExists){
             context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
         }
-
 
 
 
