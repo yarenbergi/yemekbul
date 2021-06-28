@@ -19,6 +19,7 @@ import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecyclerviewAdapter_Recipes
 import com.yarenbergi.yemekbul.Service
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
+import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 import com.yarenbergi.yemekbul.recommender.Recommender
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 import java.io.*
@@ -37,11 +38,10 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         val recyclerView : ShimmerRecyclerView = view.findViewById(R.id.recycler_view)
         val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
 
-
+        //checking the user data
         var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
         var fileExists = file.exists()
         if(!fileExists){
-
             context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
         }
 
@@ -58,12 +58,13 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         Recommender().like(ingredientIds)
  */
+        var orederedRecipes: List<RecipePointDTO> = ArrayList();
         if(recipes != null)
-            Recommender().orderTheList(recipes)
+            orederedRecipes=Recommender().orderTheList(recipes)
 
 
         recyclerView.layoutManager= LinearLayoutManager(context)
-        recyclerView.adapter= recipes?.let { RecyclerviewAdapter_Recipes(it) }
+        recyclerView.adapter= orederedRecipes?.let { RecyclerviewAdapter_Recipes(it) }
     //    view.recycler_view.showShimmer() //TODO: bu olunca yazdırmıyor!
 
         setHasOptionsMenu(true)

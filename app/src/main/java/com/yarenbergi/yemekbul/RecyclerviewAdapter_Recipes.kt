@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
 import com.yarenbergi.yemekbul.adapter.ImageAdapter
 import com.yarenbergi.yemekbul.data.RecipesItem
+import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 
-class RecyclerviewAdapter_Recipes(var recipeList:List<RecipesItem>): RecyclerView.Adapter<RecyclerviewAdapter_Recipes.ViewHolder>() {
+class RecyclerviewAdapter_Recipes(var recipeList:List<RecipePointDTO>): RecyclerView.Adapter<RecyclerviewAdapter_Recipes.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,20 +26,22 @@ class RecyclerviewAdapter_Recipes(var recipeList:List<RecipesItem>): RecyclerVie
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: RecyclerviewAdapter_Recipes.ViewHolder, position: Int) {
-        holder.title.text=recipeList[position].title
-        if(recipeList[position].image != null){
-            ImageAdapter.setImage(recipeList[position].image,holder.photo)
+        holder.title.text=recipeList[position].recipe.title
+        if(recipeList[position].recipe.image != null){
+            ImageAdapter.setImage(recipeList[position].recipe.image,holder.photo)
         }
-        holder.desc.text= recipeList[position].instructions
-        holder.likes.text = recipeList[position].aggregateLikes.toString()
-        holder.time.text = recipeList[position].readyInMinutes.toString()
-        if(recipeList[position].vegan){
+        holder.desc.text= recipeList[position].recipe.instructions
+        holder.likes.text = recipeList[position].recipe.aggregateLikes.toString()
+        holder.time.text = recipeList[position].recipe.readyInMinutes.toString()
+        holder.point.text = recipeList[position].point.toString();
+        holder.point.visibility = View.VISIBLE;
+        if(recipeList[position].recipe.vegan){
             holder.veganImage.visibility = View.VISIBLE
             holder.veganText.visibility = View.VISIBLE
         }
         holder.layout.setOnClickListener {
             var intent = Intent(holder.layout.context, MenuItemActivity::class.java)
-            intent.putExtra("id", recipeList[position].id.toString())
+            intent.putExtra("id", recipeList[position].recipe.id.toString())
             startActivity(holder.layout.context,intent,Bundle.EMPTY)
         }
     }
