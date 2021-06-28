@@ -10,7 +10,7 @@
     android:paddingEnd="16dp"
     tools:context=".activity.LoginActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/textInputLayoutEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -19,14 +19,10 @@
         android:layout_marginEnd="16dp"
         android:hint="@string/e_mail">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    </EditText>
+
+    <EditText
         android:id="@+id/textInputLayoutPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -34,21 +30,27 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/sifre"
+        android:hint="@string/password"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="#FFFFFF">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+
+    </EditText>
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonSignIn"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="@string/giri" />
+        android:text="@string/sign_in" />
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up" />
+    <Button
+        android:id="@+id/buttonWithoutLogin"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="LOGIN WITHOUT REGISTRATION" />
 </LinearLayout>

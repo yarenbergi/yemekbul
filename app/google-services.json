@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "811031471778",
+    "project_id": "yemekbul-ac658",
+    "storage_bucket": "yemekbul-ac658.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811031471778:android:1aaa94db8cf9d9699d19fb",
+        "android_client_info": {
+          "package_name": "com.yarenbergi.yemekbul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811031471778-c9l72vchd36ke1nf43pe72tg21an5i3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZCQ4YVxnBSeqNBeB1wJgfrJZqACt1fcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811031471778-c9l72vchd36ke1nf43pe72tg21an5i3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
