@@ -34,8 +34,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.recipesFragment,
                 R.id.favoriteRecipesFragment,
-                R.id.shoppingListFragment,
-                R.id.recipeFragment2
+                R.id.shoppingListFragment
          )
         )
 

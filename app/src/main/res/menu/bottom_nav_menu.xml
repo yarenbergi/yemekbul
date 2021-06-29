@@ -17,9 +17,5 @@
         >
     </item>
 
-    <item android:id="@+id/recipeFragment2"
-        android:title="Recipe"
-        android:icon="@drawable/ic_shopping_bag"
-        >
-    </item>
+
 </menu>

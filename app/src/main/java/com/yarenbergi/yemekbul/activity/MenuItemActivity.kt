@@ -2,24 +2,13 @@ package com.yarenbergi.yemekbul.activity
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecipeOverviewAdapter
-import com.yarenbergi.yemekbul.RecyclerviewAdapter_Recipes
 import com.yarenbergi.yemekbul.Service
-import com.yarenbergi.yemekbul.adapter.ImageAdapter
-import com.yarenbergi.yemekbul.data.RecipeInfo
-import com.yarenbergi.yemekbul.fragment.recipeFragment
-import com.yarenbergi.yemekbul.recommender.Recommender
-import kotlinx.android.synthetic.main.activity_menu_item.*
-import kotlinx.android.synthetic.main.fragment_overview.*
-import kotlinx.android.synthetic.main.placeholder_row_layout.*
 
 
 class MenuItemActivity : AppCompatActivity() {

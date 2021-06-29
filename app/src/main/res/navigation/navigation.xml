@@ -27,11 +27,7 @@
         android:name="com.yarenbergi.yemekbul.fragment.ShoppingListFragment"
         android:label="fragment_shopping_list"
         tools:layout="@layout/fragment_shopping_list" />
-    <fragment
-        android:id="@+id/recipeFragment2"
-        android:name="com.yarenbergi.yemekbul.fragment.recipeFragment"
-        android:label="fragment_recipe"
-        tools:layout="@layout/recipes_row_layout" />
+
     <dialog
         android:id="@+id/recipesBottomSheet"
         android:name="com.yarenbergi.yemekbul.data.bottomsheet.RecipesBottomSheet"
