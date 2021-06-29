@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.opencsv.CSVWriter
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecyclerviewAdapter_Recipes
@@ -19,6 +20,7 @@ import com.yarenbergi.yemekbul.Service
 import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 import com.yarenbergi.yemekbul.recommender.Recommender
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
+import okio.source
 import java.io.*
 
 class RecipesFragment : Fragment() {
@@ -35,31 +37,34 @@ class RecipesFragment : Fragment() {
         val recyclerView : ShimmerRecyclerView = view.findViewById(R.id.recycler_view)
         val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
 
-        //checking the user data
-        var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
-        var fileExists = file.exists()
-        if(!fileExists){
-            context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
-        }
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val storage = Firebase.storage
         val storageRef = storage.reference
-        if (currentUser != null) {
-            if(currentUser.email!= null){
-                val fileRef = storageRef.child(currentUser?.email.toString() + "/" + "ingredients.csv")
-                val os = BufferedInputStream(file.inputStream())
-                var uploadTask = fileRef.putStream(os)
-                uploadTask.addOnFailureListener {
-                    // Handle unsuccessful uploads
-                    println("Failure in upload")
-                }.addOnSuccessListener { taskSnapshot ->
-                    // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                    // ...
-                    println("Success")
-                }
+
+        //checking the user data
+        var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
+        var fileExists = file.exists()
+        if(!fileExists){
+            //context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
+            val islandRef = storageRef.child(currentUser?.email.toString() + "/" + "ingredients.csv")
+            val localFile = File.createTempFile("ingredients", "csv")
+
+            islandRef.getFile(file).addOnSuccessListener {
+
+                // Local temp file has been created
+
+            }.addOnFailureListener {
+
             }
+            val writer = FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv" )
+            FileWriter(file)
+
         }
+
+
+
+
 
 
         //recipes[0].extendedIngredients[0].id
@@ -83,11 +88,13 @@ class RecipesFragment : Fragment() {
         recyclerView.adapter= orederedRecipes?.let { RecyclerviewAdapter_Recipes(it) }
     //    view.recycler_view.showShimmer() //TODO: bu olunca yazdırmıyor!
 
+
         setHasOptionsMenu(true)
 
         view.recipes_fab.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
         }
+
         return view
     }
 

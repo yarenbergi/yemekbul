@@ -2,6 +2,7 @@ package com.yarenbergi.yemekbul.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -14,6 +15,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.yarenbergi.yemekbul.R
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.BufferedInputStream
+import com.google.firebase.storage.ktx.storage
+import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,5 +55,34 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onStop() {
+
+        super.onStop()
+
+        //updating ingredients.csv on google storage
+        var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        if (currentUser != null) {
+            if(currentUser.email!= null){
+                val fileRef = storageRef.child(currentUser?.email.toString() + "/" + "ingredients.csv")
+                val os = BufferedInputStream(file.inputStream())
+                var uploadTask = fileRef.putStream(os)
+                uploadTask.addOnFailureListener {
+                    // Handle unsuccessful uploads
+                    println("Failure in upload")
+                }.addOnSuccessListener { taskSnapshot ->
+                    // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                    // ...
+                    println("Success")
+                    println(currentUser.isAnonymous)
+                }
+            }
+        }
+
     }
 }
