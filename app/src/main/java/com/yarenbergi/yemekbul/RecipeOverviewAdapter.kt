@@ -18,6 +18,7 @@ import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
 import com.yarenbergi.yemekbul.adapter.ImageAdapter
 import com.yarenbergi.yemekbul.data.RecipeInfo
+import com.yarenbergi.yemekbul.fragment.FavoriteRecipesFragment
 import com.yarenbergi.yemekbul.fragment.RecipesFragment
 import com.yarenbergi.yemekbul.recommender.Recommender
 
@@ -50,7 +51,6 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
                 ingredientIds.add(ingredients.id)
             }
         }
-        var point = 0
         holder.likeButton.setOnClickListener {
             Recommender().like(ingredientIds)
         }
@@ -58,7 +58,9 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
             Recommender().dislike(ingredientIds)
         }
         //recipeInfo.extendedIngredients.get(0).id
-
+        holder.likeTheRecipeButton.setOnClickListener {
+            //beğenildiğinde favorilere eklemeli
+        }
     }
 
     override fun getItemCount(): Int = 1
@@ -72,5 +74,6 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
         val desc = view.findViewById<TextView>(R.id.recipeIngrMain)
         val likeButton: Button = view.findViewById(R.id.like_button)
         val dislikeButton: Button = view.findViewById(R.id.dislike_button)
+        val likeTheRecipeButton : Button = view.findViewById(R.id.likeTheRecipeButton)
     }
 }
