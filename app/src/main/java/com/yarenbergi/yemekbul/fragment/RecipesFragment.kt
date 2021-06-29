@@ -45,18 +45,22 @@ class RecipesFragment : Fragment() {
         val currentUser = auth.currentUser
         val storage = Firebase.storage
         val storageRef = storage.reference
-        val fileRef = storageRef.child(file.absolutePath)
-        val baos = ByteArrayOutputStream()
-        val data = baos.toByteArray()
-        var uploadTask = fileRef.putBytes(data)
-        uploadTask.addOnFailureListener {
-            // Handle unsuccessful uploads
-            println("Failure in upload")
-        }.addOnSuccessListener { taskSnapshot ->
-            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            // ...
-            println("Success")
+        if (currentUser != null) {
+            if(currentUser.email!= null){
+                val fileRef = storageRef.child(currentUser?.email.toString() + "/" + "ingredients.csv")
+                val os = BufferedInputStream(file.inputStream())
+                var uploadTask = fileRef.putStream(os)
+                uploadTask.addOnFailureListener {
+                    // Handle unsuccessful uploads
+                    println("Failure in upload")
+                }.addOnSuccessListener { taskSnapshot ->
+                    // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                    // ...
+                    println("Success")
+                }
+            }
         }
+
 
         //recipes[0].extendedIngredients[0].id
 
