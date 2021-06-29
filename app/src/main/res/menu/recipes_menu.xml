@@ -3,12 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_search"
-       android:title="Search"
-        android:icon="@drawable/ic_search"
+    <item android:id="@+id/menu_logout"
+       android:title="@string/logout"
+        android:icon="@drawable/ic_baseline_login"
         app:showAsAction="ifRoom"
         android:iconTint="@color/white"
-        tools:targetApi="o"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        tools:targetApi="o" />
 
 </menu>

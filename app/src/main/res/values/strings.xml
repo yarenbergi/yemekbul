@@ -85,5 +85,6 @@
     <string name="password">Password</string>
     <string name="sign_in">SIGN-IN</string>
     <string name="sign_up">SIGN-UP</string>
+    <string name="logout">Logout</string>
 
 </resources>

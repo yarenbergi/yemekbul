@@ -1,30 +1,26 @@
 package com.yarenbergi.yemekbul.fragment
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.view.*
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecyclerviewAdapter_Recipes
 import com.yarenbergi.yemekbul.Service
-import com.yarenbergi.yemekbul.activity.MenuItemActivity
 import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 import com.yarenbergi.yemekbul.recommender.Recommender
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 import java.io.*
 
-class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
+class RecipesFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
@@ -58,6 +54,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         Recommender().like(ingredientIds)
  */
+
         var orederedRecipes: List<RecipePointDTO> = ArrayList();
         if(recipes != null)
             orederedRecipes=Recommender().orderTheList(recipes)
@@ -69,7 +66,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
         setHasOptionsMenu(true)
 
-
         view.recipes_fab.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
         }
@@ -79,17 +75,26 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.recipes_menu, menu)
 
-        val search = menu.findItem(R.id.menu_search)
+        val logout = menu.findItem(R.id.menu_logout)
+
+   /*     val search = menu.findItem(R.id.menu_logout)
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
+
+    */
+    }
+    private lateinit var auth: FirebaseAuth
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.menu_logout -> {
+                auth = Firebase.auth
+                auth.signOut()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
-    override fun onQueryTextSubmit(p0: String?): Boolean {
-        return true
-    }
-
-    override fun onQueryTextChange(p0: String?): Boolean {
-        return true
-    }
 }
