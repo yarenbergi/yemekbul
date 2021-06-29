@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecyclerviewAdapter_Recipes
@@ -40,8 +41,22 @@ class RecipesFragment : Fragment() {
         if(!fileExists){
             context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
         }
-
-
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        val fileRef = storageRef.child(file.absolutePath)
+        val baos = ByteArrayOutputStream()
+        val data = baos.toByteArray()
+        var uploadTask = fileRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+            println("Failure in upload")
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+            println("Success")
+        }
 
         //recipes[0].extendedIngredients[0].id
 
