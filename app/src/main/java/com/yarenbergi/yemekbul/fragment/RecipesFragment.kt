@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.view.*
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
@@ -29,7 +30,6 @@ class RecipesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
 
     ): View? {
         // Inflate the layout for this fragment
@@ -61,12 +61,6 @@ class RecipesFragment : Fragment() {
             FileWriter(file)
 
         }
-
-
-
-
-
-
         //recipes[0].extendedIngredients[0].id
 
         //testing the recommender: ingredient likes

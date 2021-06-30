@@ -36,10 +36,13 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
         for(item in recipe.extendedIngredients!!){
             ingrList.add(item.name)
         }
-        ImageAdapter.setImage(recipe.image, holder.image)
+        if(recipe.image != null)
+            ImageAdapter.setImage(recipe.image, holder.image)
         holder.title.text = recipe.title.toString()
-        holder.ingr.adapter = IngredientListAdapter(ingrList)
         holder.desc.text = recipe.instructions
+        for (ingredient in ingrList)
+        holder.desc.text = holder.desc.text as String + "\n " +  ingredient
+
         /*
         ingredientIds[0] = 12061
         ingredientIds[1] = 10014534
@@ -58,9 +61,6 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
             Recommender().dislike(ingredientIds)
         }
         //recipeInfo.extendedIngredients.get(0).id
-        holder.likeTheRecipeButton.setOnClickListener {
-            //beğenildiğinde favorilere eklemeli
-        }
     }
 
     override fun getItemCount(): Int = 1
@@ -70,10 +70,8 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
         val layout=view.findViewById<ConstraintLayout>(R.id.recipesRowLayout1)
         val image = view.findViewById<ImageView>(R.id.recipeImageMain)
         val title = view.findViewById<TextView>(R.id.recipeTitleMain)
-        val ingr = view.findViewById<ShimmerRecyclerView>(R.id.recipeDescMain)
         val desc = view.findViewById<TextView>(R.id.recipeIngrMain)
         val likeButton: Button = view.findViewById(R.id.like_button)
         val dislikeButton: Button = view.findViewById(R.id.dislike_button)
-        val likeTheRecipeButton : Button = view.findViewById(R.id.likeTheRecipeButton)
     }
 }
