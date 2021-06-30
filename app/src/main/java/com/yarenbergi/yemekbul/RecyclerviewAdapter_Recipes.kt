@@ -44,6 +44,9 @@ class RecyclerviewAdapter_Recipes(var recipeList:List<RecipePointDTO>): Recycler
             intent.putExtra("id", recipeList[position].recipe.id.toString())
             startActivity(holder.layout.context,intent,Bundle.EMPTY)
         }
+        holder.star.setOnClickListener {
+            holder.star.setImageResource(R.drawable.ic_star)
+        }
     }
 
     override fun getItemCount(): Int = recipeList.size
@@ -59,5 +62,6 @@ class RecyclerviewAdapter_Recipes(var recipeList:List<RecipePointDTO>): Recycler
         val veganImage=view.findViewById<ImageView>(R.id.imageView5)
         val veganText=view.findViewById<TextView>(R.id.textView6)
         val point = view.findViewById<TextView>(R.id.textView7)
+        val star = view.findViewById<ImageView>(R.id.starButton)
     }
 }

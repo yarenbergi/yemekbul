@@ -8,19 +8,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecipeOverviewAdapter
 import com.yarenbergi.yemekbul.Service
+import com.yarenbergi.yemekbul.adapter.FavoriteRecipeAdapter
 import com.yarenbergi.yemekbul.data.RecipesItem
 
 class FavoriteRecipesFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
+        val view = inflater.inflate(R.layout.fragment_favorite_recipes, container, false)
+        val recyclerView : ShimmerRecyclerView = view.findViewById(R.id.favouriteRecipes_recyclerView)
+        recyclerView.layoutManager= LinearLayoutManager(this.context)
+   //     recyclerView.adapter= FavoriteRecipeAdapter()
         return view
     }
 }
