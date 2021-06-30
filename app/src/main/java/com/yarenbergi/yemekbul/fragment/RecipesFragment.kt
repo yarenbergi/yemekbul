@@ -36,7 +36,6 @@ class RecipesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_recipes, container, false)
         val recyclerView : ShimmerRecyclerView = view.findViewById(R.id.recycler_view)
         val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
-
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val storage = Firebase.storage
