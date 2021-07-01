@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YemekBul"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.SearchResultActivity"></activity>
+        <activity android:name=".activity.FridgeIngredientsActivity"></activity>
+        <activity android:name=".activity.SearchResultActivity" />
         <activity android:name=".activity.RecipeActivity" />
         <activity
             android:name=".activity.MenuItemActivity"
