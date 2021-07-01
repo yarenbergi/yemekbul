@@ -5,24 +5,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
+import com.yarenbergi.yemekbul.adapter.FavoriteRecipeAdapter
 import com.yarenbergi.yemekbul.adapter.ImageAdapter
-import com.yarenbergi.yemekbul.data.RecipesItem
+import com.yarenbergi.yemekbul.data.favorites.favoriteRecipes
+import com.yarenbergi.yemekbul.database.AppDatabase
+import com.yarenbergi.yemekbul.fragment.FavoriteRecipesFragment
 import com.yarenbergi.yemekbul.recommender.RecipePointDTO
+import kotlin.reflect.jvm.isAccessible
 
 class RecyclerviewAdapter_Recipes(var recipeList:List<RecipePointDTO>): RecyclerView.Adapter<RecyclerviewAdapter_Recipes.ViewHolder>() {
+    lateinit var auth: FirebaseAuth
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): RecyclerviewAdapter_Recipes.ViewHolder {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.recipes_row_layout,parent,false)
+
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: RecyclerviewAdapter_Recipes.ViewHolder, position: Int) {
@@ -44,8 +52,37 @@ class RecyclerviewAdapter_Recipes(var recipeList:List<RecipePointDTO>): Recycler
             intent.putExtra("id", recipeList[position].recipe.id.toString())
             startActivity(holder.layout.context,intent,Bundle.EMPTY)
         }
+        val fragment = FavoriteRecipesFragment()
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        fragment.favoritesdb = Room.databaseBuilder(holder.layout.context, AppDatabase::class.java, "myfavdb")
+            .allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        if (currentUser != null) {
+            if(fragment.favoritesdb.favorite_dao().isFavorite(currentUser.uid,recipeList[position].recipe.id.toString()) == 1){
+                holder.star.setImageResource(R.drawable.ic_star)
+            }
+            else{
+                holder.star.setImageResource(R.drawable.ic_star_border)
+            }
+        }
         holder.star.setOnClickListener {
-            holder.star.setImageResource(R.drawable.ic_star)
+            auth = Firebase.auth
+            val currentUser = auth.currentUser
+            val favoriteList = favoriteRecipes()
+            if (currentUser != null) {
+                favoriteList.uid = currentUser.uid
+            }
+            favoriteList.recipe_id = recipeList[position].recipe.id.toString()
+            //TODO : delete yapmıyor
+            if (currentUser != null) {
+                if(fragment.favoritesdb.favorite_dao().isFavorite(currentUser.uid,recipeList[position].recipe.id.toString()) != 1){
+                    fragment.favoritesdb.favorite_dao().add(favoriteList)
+                    holder.star.setImageResource(R.drawable.ic_star)
+                } else{
+                    holder.star.setImageResource(R.drawable.ic_star_border)
+                    fragment.favoritesdb.favorite_dao().deleteByRecipeId(recipeList[position].recipe.id.toString())
+                }
+            }
         }
     }
 

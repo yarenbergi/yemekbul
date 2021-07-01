@@ -10,13 +10,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.yarenbergi.yemekbul.R
+import com.yarenbergi.yemekbul.database.AppDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.BufferedInputStream
-import com.google.firebase.storage.ktx.storage
 import java.io.File
 
 
@@ -41,7 +43,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.shoppingListFragment
          )
         )
-
 
         bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)

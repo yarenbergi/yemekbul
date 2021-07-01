@@ -5,10 +5,12 @@ import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecipeOverviewAdapter
 import com.yarenbergi.yemekbul.Service
+import com.yarenbergi.yemekbul.database.AppDatabase
 
 
 class MenuItemActivity : AppCompatActivity() {
