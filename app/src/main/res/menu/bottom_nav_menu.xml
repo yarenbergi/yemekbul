@@ -11,11 +11,15 @@
         android:icon="@drawable/ic_star">
     </item>
 
-    <item android:id="@+id/shoppingListFragment"
-        android:title="@string/shopping_list_fragment"
+    <item
+        android:id="@+id/shoppingListFragment"
         android:icon="@drawable/ic_shopping_bag"
-        >
-    </item>
+        android:title="@string/shopping_list_fragment"></item>
+
+    <item
+        android:id="@+id/fridgeFragment"
+        android:icon="@drawable/ic_storefront"
+        android:title="@string/my_fridge"></item>
 
 
 </menu>
