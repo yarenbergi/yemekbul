@@ -2,6 +2,8 @@ package com.yarenbergi.yemekbul.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
 import com.yarenbergi.yemekbul.R
@@ -21,13 +23,36 @@ class FridgeIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
         ingredientList.add("egg")
         ingredientList.add("olive oil")
 
+        val searchView : SearchView = findViewById(R.id.searchView)
+        val listView : ListView = findViewById(R.id.search_list)
+        val adapter : ArrayAdapter<String>
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, ingredientList)
+
+        mList.setAdapter(adapter)
+        mList.isTextFilterEnabled()
+        setupArama()
+        
+
+    }
+    private fun setupArama(){
+        searchView.isIconifiedByDefault(false)
+        searchView.setOnQueryTextListener(this)
+        searchView.isSubmitButtonEnabled(true)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
+        return false
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
+        if(TextUtils.isEmpty(newText))
+            mList.clearTextFilter()
+        else
+            mList.setFilterText(newText)
+
+        return true
     }
+
+
+
 }
