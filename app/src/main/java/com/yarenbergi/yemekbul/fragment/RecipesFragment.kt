@@ -1,5 +1,6 @@
 package com.yarenbergi.yemekbul.fragment
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -18,6 +19,7 @@ import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecyclerviewAdapter_Recipes
 import com.yarenbergi.yemekbul.Service
+import com.yarenbergi.yemekbul.activity.SearchResultActivity
 import com.yarenbergi.yemekbul.api.com.spoonacular.DefaultApi
 import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 import com.yarenbergi.yemekbul.recommender.Recommender
@@ -90,7 +92,7 @@ class RecipesFragment : Fragment() {
         return view
     }
 
-
+    //search part
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.recipes_menu, menu)
 
@@ -101,7 +103,10 @@ class RecipesFragment : Fragment() {
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                println( DefaultApi().autocompleteRecipeSearch(query, 10.toBigDecimal()).toString())
+                println( )
+                var intent = Intent(context, SearchResultActivity::class.java)
+                intent.putExtra("result", DefaultApi().autocompleteRecipeSearch(query, 10.toBigDecimal()).toString())
+                startActivity(intent,Bundle.EMPTY)
                 return false
             }
 

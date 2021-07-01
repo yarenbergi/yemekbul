@@ -17,11 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YemekBul"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.SearchResultActivity"></activity>
         <activity android:name=".activity.RecipeActivity" />
-        <activity android:name=".activity.MenuItemActivity"
+        <activity
+            android:name=".activity.MenuItemActivity"
             android:label="Details"
-            android:theme="@style/MenuItemActivityStyle"
-            />
+            android:theme="@style/MenuItemActivityStyle" />
         <activity
             android:name=".activity.SearchActivity"
             android:label="@string/title_activity_search"

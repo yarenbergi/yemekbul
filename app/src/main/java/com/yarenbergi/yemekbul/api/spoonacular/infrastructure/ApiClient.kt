@@ -3,6 +3,7 @@ package com.yarenbergi.yemekbul.api.spoonacular.infrastructure
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.ToJson
+import com.yarenbergi.yemekbul.Constant
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.MediaType
@@ -86,7 +87,7 @@ open class ApiClient(val baseUrl: String) {
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        urlBuilder.addQueryParameter("apiKey", "e1de17cefea24c36a776f31b15536d71")
+        urlBuilder.addQueryParameter("apiKey", Constant.ApiKey)
         val url = urlBuilder.build()
 
         // take content-type/accept from spec or set to default (application/json) if not defined
