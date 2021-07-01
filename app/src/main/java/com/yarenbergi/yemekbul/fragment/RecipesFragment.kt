@@ -3,26 +3,28 @@ package com.yarenbergi.yemekbul.fragment
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.*
-import android.widget.Button
-import androidx.fragment.app.Fragment
+import android.widget.SearchView
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.opencsv.CSVWriter
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.RecyclerviewAdapter_Recipes
 import com.yarenbergi.yemekbul.Service
+import com.yarenbergi.yemekbul.api.com.spoonacular.DefaultApi
 import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 import com.yarenbergi.yemekbul.recommender.Recommender
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
-import okio.source
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.FileWriter
 
 class RecipesFragment : Fragment() {
 
@@ -34,19 +36,23 @@ class RecipesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_recipes, container, false)
-        val recyclerView : ShimmerRecyclerView = view.findViewById(R.id.recycler_view)
-        val recipes = Service.getRandomRecipes(true, "",10.toBigDecimal())
+        val recyclerView: ShimmerRecyclerView = view.findViewById(R.id.recycler_view)
+        val recipes = Service.getRandomRecipes(true, "", 10.toBigDecimal())
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val storage = Firebase.storage
         val storageRef = storage.reference
 
         //checking the user data
-        var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv")
+        var file = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                .toString() + "/ingredients.csv"
+        )
         var fileExists = file.exists()
-        if(!fileExists){
+        if (!fileExists) {
             //context?.resources?.openRawResource(R.raw.ingredients)?.copyTo(FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv"))
-            val islandRef = storageRef.child(currentUser?.email.toString() + "/" + "ingredients.csv")
+            val islandRef =
+                storageRef.child(currentUser?.email.toString() + "/" + "ingredients.csv")
             val localFile = File.createTempFile("ingredients", "csv")
 
             islandRef.getFile(file).addOnSuccessListener {
@@ -56,30 +62,22 @@ class RecipesFragment : Fragment() {
             }.addOnFailureListener {
 
             }
-            val writer = FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/ingredients.csv" )
+            val writer = FileOutputStream(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                    .toString() + "/ingredients.csv"
+            )
             FileWriter(file)
 
         }
-        //recipes[0].extendedIngredients[0].id
-
-        //testing the recommender: ingredient likes
-/*
-        val ingredientIds : ArrayList<Int> = ArrayList()
-
-        for (ingredient in recipes!![0].extendedIngredients!!){
-            ingredientIds.add(ingredient.id)
-        }
-        Recommender().like(ingredientIds)
- */
 
         var orederedRecipes: List<RecipePointDTO> = ArrayList();
-        if(recipes != null)
-            orederedRecipes=Recommender().orderTheList(recipes)
+        if (recipes != null)
+            orederedRecipes = Recommender().orderTheList(recipes)
 
 
-        recyclerView.layoutManager= LinearLayoutManager(context)
-        recyclerView.adapter= orederedRecipes?.let { RecyclerviewAdapter_Recipes(it) }
-    //    view.recycler_view.showShimmer() //TODO: bu olunca yazdırmıyor!
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = orederedRecipes?.let { RecyclerviewAdapter_Recipes(it) }
+        //    view.recycler_view.showShimmer() //TODO: bu olunca yazdırmıyor!
 
 
         setHasOptionsMenu(true)
@@ -88,21 +86,32 @@ class RecipesFragment : Fragment() {
             findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
         }
 
+
         return view
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.recipes_menu, menu)
 
         val logout = menu.findItem(R.id.menu_logout)
 
-   /*     val search = menu.findItem(R.id.menu_logout)
+        val search = menu.findItem(R.id.menu_search)
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
-        searchView?.setOnQueryTextListener(this)
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                println( DefaultApi().autocompleteRecipeSearch(query, 10.toBigDecimal()).toString())
+                return false
+            }
 
-    */
+            override fun onQueryTextChange(newText: String): Boolean {
+                println("Text Changed!")
+                return false
+            }
+        })
     }
+
     private lateinit var auth: FirebaseAuth
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
@@ -115,5 +124,7 @@ class RecipesFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 
 }
