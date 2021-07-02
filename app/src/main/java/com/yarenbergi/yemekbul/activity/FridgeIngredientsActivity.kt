@@ -28,8 +28,8 @@ class FridgeIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
         ingredientList.add("egg")
         ingredientList.add("olive oil")
 
-        val searchView : SearchView = findViewById(R.id.search_bar)
-        val listView : ListView = findViewById(R.id.search_list)
+        searchView = findViewById(R.id.search_bar)
+        mList = findViewById(R.id.search_list)
         val adapter : ArrayAdapter<String>
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, ingredientList)
 

@@ -27,6 +27,11 @@
         android:name="com.yarenbergi.yemekbul.fragment.ShoppingListFragment"
         android:label="fragment_shopping_list"
         tools:layout="@layout/fragment_shopping_list" />
+    <activity
+        android:id="@+id/fridgeFragment"
+        android:name="com.yarenbergi.yemekbul.activity.FridgeIngredientsActivity"
+        android:label="fragment_fridge"
+        tools:layout="@layout/fragment_fridge" />
 
     <dialog
         android:id="@+id/recipesBottomSheet"
