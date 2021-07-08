@@ -1,4 +1,4 @@
-package com.yarenbergi.yemekbul.data.bottomsheet
+package com.yarenbergi.yemekbul.bottomsheet
 
 import android.os.Bundle
 import android.view.LayoutInflater

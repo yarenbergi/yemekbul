@@ -1,9 +1,6 @@
-package com.yarenbergi.yemekbul
+package com.yarenbergi.yemekbul.adapter
 
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,26 +9,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.todkars.shimmer.ShimmerRecyclerView
-import com.yarenbergi.yemekbul.activity.MenuItemActivity
-import com.yarenbergi.yemekbul.adapter.ImageAdapter
+import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.data.RecipeInfo
-import com.yarenbergi.yemekbul.fragment.FavoriteRecipesFragment
-import com.yarenbergi.yemekbul.fragment.RecipesFragment
 import com.yarenbergi.yemekbul.recommender.Recommender
 
 class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<RecipeOverviewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecipeOverviewAdapter.ViewHolder {
+    ): ViewHolder {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.fragment_instructions,parent,false)
         return ViewHolder(view)
     }
     @RequiresApi(Build.VERSION_CODES.R)
-    override fun onBindViewHolder(holder: RecipeOverviewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ingrList : MutableList<String> = ArrayList()
         for(item in recipe.extendedIngredients!!){
             ingrList.add(item.name)
@@ -43,10 +35,6 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
         for (ingredient in ingrList)
         holder.desc.text = holder.desc.text as String + "\n " +  ingredient
 
-        /*
-        ingredientIds[0] = 12061
-        ingredientIds[1] = 10014534
-         */
         var ingredientList = recipe?.extendedIngredients
         var ingredientIds : ArrayList<Int> = ArrayList()
         if (ingredientList != null) {
@@ -60,7 +48,6 @@ class RecipeOverviewAdapter(var recipe: RecipeInfo): RecyclerView.Adapter<Recipe
         holder.dislikeButton.setOnClickListener{
             Recommender().dislike(ingredientIds)
         }
-        //recipeInfo.extendedIngredients.get(0).id
     }
 
     override fun getItemCount(): Int = 1

@@ -5,12 +5,10 @@ import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
-import com.yarenbergi.yemekbul.RecipeOverviewAdapter
-import com.yarenbergi.yemekbul.Service
-import com.yarenbergi.yemekbul.database.AppDatabase
+import com.yarenbergi.yemekbul.adapter.RecipeOverviewAdapter
+import com.yarenbergi.yemekbul.service.Service
 
 
 class MenuItemActivity : AppCompatActivity() {
@@ -26,25 +24,6 @@ class MenuItemActivity : AppCompatActivity() {
 
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= recipe?.let { RecipeOverviewAdapter(it) }
-
-    /*    val id = intent.getStringExtra("id")
-        val list: ArrayList<String> = ArrayList<String>()
-        var text: TextView = findViewById(R.id.recipeTitleTextView)
-        var image: ImageView = findViewById(R.id.recipeImage)
-        var ingredients: TextView = findViewById(R.id.ingredientsList)
-        var desc: TextView = findViewById(R.id.recipeDescription)
-        if (id != null) {
-            var recipeInfo : RecipeInfo = Service.getRecipeInformation(id.toBigDecimal(),false)
-            text.text = recipeInfo.title
-            ImageAdapter.setImage(recipeInfo.image, image)
-            for(item in recipeInfo.extendedIngredients!!){
-                list.add(item.originalName.toString())
-            }
-            ingredients.text = list.toString()
-            desc.text = recipeInfo.instructions
-        }
-
-     */
 
     }
 

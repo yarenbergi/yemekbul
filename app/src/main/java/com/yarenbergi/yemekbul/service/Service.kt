@@ -1,6 +1,5 @@
-package com.yarenbergi.yemekbul
+package com.yarenbergi.yemekbul.service
 
-import android.widget.ImageView
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.GsonBuilder
@@ -9,7 +8,6 @@ import com.yarenbergi.yemekbul.api.com.spoonacular.DefaultApi
 import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ClientException
 import com.yarenbergi.yemekbul.api.spoonacular.infrastructure.ServerException
 import com.yarenbergi.yemekbul.data.*
-import kotlinx.android.synthetic.main.recipes_row_layout.view.*
 import java.lang.reflect.Type
 
 object Service {

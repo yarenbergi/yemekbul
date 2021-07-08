@@ -3,7 +3,7 @@ package com.yarenbergi.yemekbul.api.spoonacular.infrastructure
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.ToJson
-import com.yarenbergi.yemekbul.Constant
+import com.yarenbergi.yemekbul.constant.Constant
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.MediaType

@@ -35,7 +35,7 @@
 
     <dialog
         android:id="@+id/recipesBottomSheet"
-        android:name="com.yarenbergi.yemekbul.data.bottomsheet.RecipesBottomSheet"
+        android:name="com.yarenbergi.yemekbul.bottomsheet.RecipesBottomSheet"
         android:label="recipes_bottom_sheet"
         tools:layout="@layout/recipes_bottom_sheet" >
         <action

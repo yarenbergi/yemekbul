@@ -10,9 +10,8 @@ import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.todkars.shimmer.ShimmerRecyclerView
 import com.yarenbergi.yemekbul.R
-import com.yarenbergi.yemekbul.Service
+import com.yarenbergi.yemekbul.service.Service
 import com.yarenbergi.yemekbul.adapter.FavoriteRecipeAdapter
 import com.yarenbergi.yemekbul.data.RecipeInfo
 import com.yarenbergi.yemekbul.database.AppDatabase

@@ -1,4 +1,4 @@
-package com.yarenbergi.yemekbul
+package com.yarenbergi.yemekbul.adapter
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,26 +14,24 @@ import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.yarenbergi.yemekbul.R
 import com.yarenbergi.yemekbul.activity.MenuItemActivity
-import com.yarenbergi.yemekbul.adapter.FavoriteRecipeAdapter
-import com.yarenbergi.yemekbul.adapter.ImageAdapter
 import com.yarenbergi.yemekbul.data.favorites.favoriteRecipes
 import com.yarenbergi.yemekbul.database.AppDatabase
 import com.yarenbergi.yemekbul.fragment.FavoriteRecipesFragment
 import com.yarenbergi.yemekbul.recommender.RecipePointDTO
-import kotlin.reflect.jvm.isAccessible
 
 class RecyclerviewAdapter_Recipes(var recipeList:List<RecipePointDTO>): RecyclerView.Adapter<RecyclerviewAdapter_Recipes.ViewHolder>() {
     lateinit var auth: FirebaseAuth
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecyclerviewAdapter_Recipes.ViewHolder {
+    ): ViewHolder {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.recipes_row_layout,parent,false)
 
         return ViewHolder(view)
     }
-    override fun onBindViewHolder(holder: RecyclerviewAdapter_Recipes.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text=recipeList[position].recipe.title
         if(recipeList[position].recipe.image != null){
             ImageAdapter.setImage(recipeList[position].recipe.image,holder.photo)
