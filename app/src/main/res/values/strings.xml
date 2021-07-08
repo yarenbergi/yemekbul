@@ -88,5 +88,7 @@
     <string name="logout">Logout</string>
     <string name="like">LIKE</string>
     <string name="my_fridge">My Fridge</string>
+    <string name="intolerances">Intolerances</string>
+    <string name="cuisines">Cuisines</string>
 
 </resources>
