@@ -20,7 +20,6 @@ class MenuItemModel : ViewModel() {
         post.enqueue(object : Callback<MenuItems> {
             override fun onFailure(call: Call<MenuItems>, t: Throwable) {
 
-                Log.d("-----------------: ", t.message.toString())
                // Toast.makeText(, t.message.toString(), Toast.LENGTH_LONG).show()
             }
 
@@ -28,9 +27,7 @@ class MenuItemModel : ViewModel() {
                 if (response.isSuccessful) {
                     menuItemList = (response.body())!!
 
-                    Log.d("DENEMEEEEEEEEE : -----", menuItemList.toString())
                 } else {
-                    Log.d("ssssssssssssssssssss", response.message())
                 }
             }
 

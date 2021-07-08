@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -23,7 +24,10 @@ import com.yarenbergi.yemekbul.activity.SearchResultActivity
 import com.yarenbergi.yemekbul.api.com.spoonacular.DefaultApi
 import com.yarenbergi.yemekbul.recommender.RecipePointDTO
 import com.yarenbergi.yemekbul.recommender.Recommender
+import kotlinx.android.synthetic.main.activity_search.view.*
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
+import kotlinx.android.synthetic.main.recipes_bottom_sheet.*
+import kotlinx.android.synthetic.main.recipes_bottom_sheet.view.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileWriter
@@ -82,10 +86,19 @@ class RecipesFragment : Fragment() {
         //    view.recycler_view.showShimmer() //TODO: bu olunca yazdırmıyor!
 
 
+
+
+
         setHasOptionsMenu(true)
 
         view.recipes_fab.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            /*
+            val bottomView = inflater.inflate(R.layout.recipes_bottom_sheet, container, false)
+            bottomView.findViewById<Button>(R.id.apply_btn).setOnClickListener { println("lalalallalala") }
+            println(bottomView.findViewById<Button>(R.id.apply_btn).isClickable)
+
+             */
         }
 
 
@@ -103,7 +116,6 @@ class RecipesFragment : Fragment() {
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                println( )
                 var intent = Intent(context, SearchResultActivity::class.java)
                 intent.putExtra("result", DefaultApi().autocompleteRecipeSearch(query, 10.toBigDecimal()).toString())
                 startActivity(intent,Bundle.EMPTY)

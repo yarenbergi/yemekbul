@@ -34,11 +34,8 @@ class Recommender { //TODO: toplam puanı tutan bir metod olursa REcyclerviewAda
         var recommendedList : ArrayList<RecipePointDTO> = ArrayList()
         val list:MutableMap<Int, Int> = HashMap()
         for (csvRecord in csvParser) {
-            //val name = csvRecord.get(0);
             val id = csvRecord.get(1).toInt();
             val point = csvRecord.get(2).toInt();
-            //println(name + id + point);
-            //list.add(IngredientCsv(name, id, point))
             list[id] = point
         }
         csvParser.close()
@@ -74,7 +71,6 @@ class Recommender { //TODO: toplam puanı tutan bir metod olursa REcyclerviewAda
                 val name = csvRecord.get(0);
                 val id = csvRecord.get(1).toInt();
                 val point = csvRecord.get(2).toInt();
-                //println(name + id + point);
                 list.add(IngredientCsv(name, id, point))
             }
             csvParser.close()
@@ -91,9 +87,7 @@ class Recommender { //TODO: toplam puanı tutan bir metod olursa REcyclerviewAda
             for(ingredient in list){
                 writer.writeNext(arrayOf(ingredient.ingredientName, ingredient.id.toString(), ingredient.point.toString()))
             }
-            //println("asdasasdasasdasads")
             writer.close()
-            //println("asdasasdasasdasads")
 
         }
         catch (ffe: FileNotFoundException) {
