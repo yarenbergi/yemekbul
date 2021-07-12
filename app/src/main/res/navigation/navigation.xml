@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/recipesFragment"
         android:name="com.yarenbergi.yemekbul.fragment.RecipesFragment"
-        android:label="fragment_recipes"
+        android:label="Recipes"
         tools:layout="@layout/fragment_recipes" >
         <action
             android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
@@ -20,12 +20,12 @@
     <fragment
         android:id="@+id/favoriteRecipesFragment"
         android:name="com.yarenbergi.yemekbul.fragment.FavoriteRecipesFragment"
-        android:label="fragment_favorite_recipes"
+        android:label="Favorite Recipes"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/shoppingListFragment"
         android:name="com.yarenbergi.yemekbul.fragment.ShoppingListFragment"
-        android:label="fragment_shopping_list"
+        android:label="Shopping List"
         tools:layout="@layout/fragment_shopping_list" />
     <activity
         android:id="@+id/fridgeFragment"

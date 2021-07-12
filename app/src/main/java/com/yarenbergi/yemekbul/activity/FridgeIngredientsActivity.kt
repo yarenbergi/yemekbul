@@ -8,13 +8,9 @@ import android.text.TextUtils
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import com.yarenbergi.yemekbul.R
-import com.yarenbergi.yemekbul.fragment.FridgeFragment
-import com.yarenbergi.yemekbul.recommender.RecipePointDTO
-import kotlinx.android.synthetic.main.fragment_overview.view.*
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import java.io.FileInputStream
